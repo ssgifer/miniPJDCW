@@ -3,19 +3,23 @@ import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import styles from '../styles/Home.module.css'
 
+const gotowebsite = () => {
+  navigator.clipboard.writeText(token)
+}
+
 export default function Home({ token }) {
  
   return (
     <Layout>
     <Head>
-        <title>First Page</title>
+        <title>Home Page</title>
     </Head>
     <div className={styles.container}>
         <Navbar />
         <h1>Puppy Shop</h1>
         <img src ="https://cms.kapook.com/uploads/tag/34/ID_33400_57eded5c4a93a.png" />
-    </div>
-    
+        <button onClick={gotowebsite}> Go To This Website </button>
+    </div>    
 </Layout>
   )
 }

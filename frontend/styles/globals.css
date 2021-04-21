@@ -34,7 +34,7 @@ button{
 h2{
   width: 400px;
   padding: 10px;
-  border: 5px solid gray;
+  border: 5px solid rgb(0, 0, 0);
   margin: 0;
 }
 h3{
@@ -48,21 +48,21 @@ body{
 }
 .topnav{
   overflow: hidden;
-  background-color: #333;
+  background-color: pink;
 }
 .topnav a{
   float: left;
-  color: #f2f2f2;
+  color: #000000;
   text-align: center;
   padding: 15px 60px;
   text-decoration: none;
   font-size: 20px;
 }
 .topnav a:hover{
-  background-color: #ddd;
+  background-color: pink;
   color: black;
 }
 .topnav a.active {
-  background-color: #4CAF50;
-  color: white;
+  background-color: pink;
+  color: rgb(0, 0, 0);
 }

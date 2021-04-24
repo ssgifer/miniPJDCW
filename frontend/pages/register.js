@@ -34,7 +34,6 @@ export default function Register({ token }) {
         catch (e) {
             console.log(e)
         }
-
     }
 
     const registerForm = () => (

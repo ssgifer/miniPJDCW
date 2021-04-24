@@ -31,7 +31,7 @@ export default function Login({ token }) {
     const loginForm = () => (
         <div className={styles.gridContainer}>
             <div>
-                Username:
+                Username :
             </div>
             <div>
                 <input type="text"
@@ -41,7 +41,7 @@ export default function Login({ token }) {
                 />
             </div>
             <div>
-                Password:
+                Password :
             </div>
             <div>
                 <input type="password"
@@ -69,7 +69,7 @@ export default function Login({ token }) {
                 </div>
                 <br/>
                 <div>
-                    Status:  {status}
+                    Status :  {status}
                 </div>
                 <br />
                 {loginForm()}

@@ -66,6 +66,16 @@ export default function Register({ token }) {
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)} />
             </div>
+            <div>
+                Confirm Password :
+            </div>
+            <div>
+                <input type="confirmpassword"
+                    name="confirmpassword"
+                    placeholder="confirmpassword"
+                    onChange={(e) => setPassword(e.target.value)} />
+            </div>
+
 
         </div>
     )

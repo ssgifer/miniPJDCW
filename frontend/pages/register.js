@@ -110,6 +110,11 @@ export default function Register({ token }) {
     )
 }
 
+const logout = async () => {
+    let result = await axios.get(`${config.URL}/logout`, { withCredentials: true })
+    setStatus("Register successful")
+}
+
 export function getServerSideProps({ req, res }) {
     return { props: { token: req.cookies.token || "" } };
 }

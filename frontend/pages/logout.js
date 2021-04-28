@@ -17,7 +17,7 @@ export default function Logout({ token }) {
     const logout = async () => {
         console.log('remove token: ', token)
         let result = await axios.get(`${config.URL}/logout`, { withCredentials: true })
-        setStatus("Logout successful")
+        setStatus("Logout Successful")
     }
  
     return (

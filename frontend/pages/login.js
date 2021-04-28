@@ -19,7 +19,6 @@ export default function Login({ token }) {
                 { withCredentials: true })
             console.log('result: ', result)
             console.log('result.data:  ', result.data)
-            console.log('token:  ', token)
             setStatus(result.status + ': ' + result.data.user.username)
         }
         catch (e) {

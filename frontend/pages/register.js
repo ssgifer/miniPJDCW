@@ -15,7 +15,6 @@ export default function Register({ token }) {
     const [status, setStatus] = useState('')
 
     const profileUser = async () => {
-        console.log('token: ', token)
         const users = await axios.get(`${config.URL}/profile`, {
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -28,7 +27,6 @@ export default function Register({ token }) {
                 { username, email, password })
             console.log('result: ', result)
             console.log('result.data:  ', result.data)
-            console.log('token:  ', token)
             setStatus(result.data.message)
         }
         catch (e) {

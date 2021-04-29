@@ -74,13 +74,6 @@ router.get(
   }
 );
 /* GET user foo. */
-router.get(
-  "/foo",
-  passport.authenticate("jwt", { session: false }),
-  (req, res, next) => {
-      res.status(200).json({ message: "Foo" });
-  }
-);
 
 router.post("/register", async (req, res) => {
   try {
@@ -93,7 +86,7 @@ router.post("/register", async (req, res) => {
 
     let id = users.users.length? users.users[users.users.length - 1].id + 1: 1;
     hash = await bcrypt.hash(password, SALT_ROUND);
-    users.users.push({ id, username, password: hash, email });
+    users.users.push({ species, sex, age, price, image });
     res.status(200).json({ message: "Register success" });
   } catch {
     res.status(422).json({ message: "Cannot register" });
@@ -106,59 +99,60 @@ router.get("/", (req, res, next) => {
   res.send("Respond without authentication");
 });
 
-  let students = {
-      list: [
-        { "id": 1, "name": "Harry", "surname": "Potter", "major": "CoE" , "GPA": 3.62 },
-        { "id": 2, "name": "Ron", "surname": "Weasley", "major": "CoE" , "GPA": 3.18 }]
-    }
-  
-  
+let puppy = {
+  list: [
+    { "id": 1, "สายพันธุ์ (Species)" : "ปอมเมอเรเนียน (Pomeranian)", "เพศ (Sex)" : "ผู้ (Male)", "Age" : "1.5 Y" , "Price": 18000, "src":"/./styles/image/1.jpg"}
+  ]
+}
+
   router
-    .route("/students")
+    .route("/puppys")
     .get((req, res) => {
-      res.send(students);
+      res.send(puppys);
     })
     .post((req, res) => {
       console.log(req.body);
       let newstudent = {};
-      newstudent.id = students.list.length ? students.list[students.list.length - 1].id + 1 : 1;
-      newstudent.name = req.body.name;
-      newstudent.surname= req.body.surname;
-      newstudent.major = req.body.major;
-      newstudent.GPA= req.body.GPA;
-      students = { list: [...students.list, newstudent] };
-      res.json(students);
+      newpuppy.id = puppys.list.length ? pupps.list[pupps.list.length - 1].id + 1 : 1;
+      newpuppy.species = req.body.species;
+      newpuppy.sex = req.body.sex;
+      newpuppy.age = req.body.age;
+      newpuppy.price = req.body.price;
+      newpuppy.image = req.body.image;
+      puppys = { list: [...puppys.list, newpuppy] };
+      res.json(puppys);
     });
   
   router
-    .route("/students/:studentid")
+    .route("/puppys/:puppyid")
     .get((req, res) => {
-      let id = students.list.findIndex((item) => +item.id == +req.params.studentid)
-      res.json(students.list[id]);
+      let id = puppys.list.findIndex((item) => +item.id == +req.params.puppyid)
+      res.json(puppys.list[id]);
     })
     .put((req, res) => {
-      let id = students.list.findIndex((item) => item.id == +req.params.studentid);
-      students.list[id].name = req.body.name;
-      students.list[id].surname = req.body.surname;
-      students.list[id].major = req.body.major;
-      students.list[id].GPA = req.body.GPA;
-      res.json(students.list);
+      let id = puppys.list.findIndex((item) => item.id == +req.params.puppyid);
+      puppys.list[id].species = req.body.species;
+      puppys.list[id].sex = req.body.sex;
+      puppys.list[id].age = req.body.age;
+      puppys.list[id].price = req.body.price;
+      puppys.list[id].image = req.body.image;
+      res.json(puppys.list);
     })
     .delete((req, res) => {
-      students.list = students.list.filter((item) => +item.id !== +req.params.studentid);
-      res.json(students.list);
+      puppys.list = puppys.list.filter((item) => +item.id !== +req.params.puppyid);
+      res.json(puppys.list);
     });
   
   
-  router.route("/purchase/:studentId")
+  router.route("/purchase/:puppyId")
   .post((req,res) => {
-    let id = students.list.findIndex((item) => +item.id == +req.params.studentId)
+    let id = puppys.list.findIndex((item) => +item.id == +req.params.puppyId)
     if (id == -1) {
-      res.json({message: "Student not found"})
+      res.json({message: "Puppy not found"})
     }
     else {
-      students.list = students.list.filter((item) => +item.id !== +req.params.studentId);
-      res.json(students.list);
+      puppys.list = puppys.list.filter((item) => +item.id !== +req.params.puppyId);
+      res.json(puppys.list);
     }
   })
 

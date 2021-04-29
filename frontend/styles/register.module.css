@@ -70,3 +70,33 @@
     border: 2px solid black;
 }
 
+.btn2{
+    background-color: pink;
+    border-radius: 10%;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .btn2 {
+      background-color: pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }
+  .btn2:hover{
+      background-color: pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }
+
+

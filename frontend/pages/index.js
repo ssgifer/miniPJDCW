@@ -1,62 +1,45 @@
 import Head from 'next/head' 
-import Layout from '../components/layout' 
-import useSWR, { mutate } from "swr";
-import axios from "axios";
-import React, { } from "react";
-import styles from "../styles/Index.module.css";
-import Navbar from "../components/navbar";
-const URL = "http://localhost/api/students";
-const URL_SEL = "http://localhost/api/purchase";
-const fetcher = (key) => fetch(key).then((res) => res.json());
-const index = () => {
-  const { data, error } = useSWR(URL, fetcher, { revalidateOnFocus: false });
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>Loading...</div>;
-  console.log("data", data);
-  
-  const selStu = async (id) => {
-    let result = await axios.post(`${URL_SEL}/${id}`)
-    mutate(URL, data);
-  }
+import Navbar from '../components/navbar'
+import styles from '../styles/Home.module.css' 
+import React from 'react';
 
-  const showStudents = () => {
-    if (data.list && data.list.length) {
-      return data.list.map((item, index) => {
-        return (
-          <div className={styles.listItem} key={index}>
-            <div><b>Name:</b> {item.name}</div>
-            <div><b>Surname:</b> {item.surname}</div>
-             <div> <b>Major:</b> {item.major} </div>
-            <div><b>GPA:</b> {item.GPA}</div>
-            
-            <div>
-            <button
-              className={styles.btn}
-              onClick={() => selStu(item.id)}
-            >
-              Select
-            </button></div>
-          </div>
-        );
-      });
-    } else {
-      return <p>Loading...</p>;
-    }
-  };
+export function getServerSideProps({ req, res }) {
+  return { props: { token: req.cookies.token || "" } };
+}
+
+export default function Home({ token }) {
+    
   return (
-    <Layout>
-       <Head>
+   <div>
+    <Head>
         <title>Home Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
     </Head>
-    <div className={styles.container}><Navbar />
+    <Navbar />
+    
+    <div className={styles.container}>
+    <div className={styles.title}>
+    <marquee bgcolor="#FFCCCC" direction="up" scrollamount="5" width="120%" height="120px">
+    <center><h2>Welcome to Puppy Shop</h2>
+            <h2>Try to choose that you like.</h2>
+    </center></marquee></div><br/><br/>
+
+      <div className={styles.container1}>
       <div className={styles.title}>
+      <marquee bgcolor="#FFCCCC" direction="left" scrollamount="15" width="100%" height="200px">
+          <h1><ins>**Promotion**</ins></h1>
+          <h3>ซื้อสุนัขวันนี้ แถมฟรีเซตแฟนวีสุดน่ารัก ทั้งเสื้อผ้า เบาะนอน และของเล่นมากมาย</h3>
+          <h2>เฉพาะ 3 วันนี้เท่านั้น!!!</h2>
+          </marquee></div>  
+        </div><br/><br/>  
+        <h1>##สินค้าแนะนำ##</h1> 
+        <div className={styles.image}></div>
+            <image src = "1(1)"></image>
       </div>
-      <div className={styles.list}>
-        {showStudents()}
-      </div>
-      
-    </div>
-    </Layout>
-  );
-};
-export default index;
+      </div> 
+  )
+}

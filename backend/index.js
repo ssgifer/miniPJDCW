@@ -101,8 +101,7 @@ router.get("/", (req, res, next) => {
 
 let puppy = {
   list: [
-    { "id": 1, "สายพันธุ์ (Species)" : "ปอมเมอเรเนียน (Pomeranian)", "เพศ (Sex)" : "ผู้ (Male)", "Age" : "1.5 Y" , "Price": 18000, "src":"/./styles/image/1.jpg"}
-  ]
+    { "id": 1, "สายพันธุ์ (Species)" : "ปอมเมอเรเนียน (Pomeranian)", "เพศ (Sex)" : "ผู้ (Male)", "Age" : "1.5 Y" , "Price": 18000, "src":"/./styles/image/1.jpg"}]
 }
 
   router

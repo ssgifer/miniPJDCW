@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Navbar from '../components/navbar'
 import styles from '../styles/Home.module.css' 
 import React from 'react';
+import html from 'react'
 
 export function getServerSideProps({ req, res }) {
   return { props: { token: req.cookies.token || "" } };
@@ -20,13 +21,13 @@ export default function Home({ token }) {
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
     </Head>
     <Navbar />
-    
+    <br/><br/>
     <div className={styles.container}>
     <div className={styles.title}>
-    <marquee bgcolor="#FFCCCC" direction="up" scrollamount="5" width="120%" height="120px">
-    <center><h2>Welcome to Puppy Shop</h2>
-            <h2>Try to choose that you like.</h2>
-    </center></marquee></div><br/><br/>
+    <center><marquee bgcolor="#FFCCCC" direction="left" scrollamount="5" width="100%" height="150px">
+    <h2>Welcome to Puppy Shop</h2>
+    <h2>Try to choose that you like.</h2>
+    </marquee></center></div>
 
       <div className={styles.container1}>
       <div className={styles.title}>
@@ -34,12 +35,27 @@ export default function Home({ token }) {
           <h1><ins>**Promotion**</ins></h1>
           <h3>ซื้อสุนัขวันนี้ แถมฟรีเซตแฟนวีสุดน่ารัก ทั้งเสื้อผ้า เบาะนอน และของเล่นมากมาย</h3>
           <h2>เฉพาะ 3 วันนี้เท่านั้น!!!</h2>
-          </marquee></div>  
-        </div><br/><br/>  
-        <h1>##สินค้าแนะนำ##</h1> 
-        <div className={styles.image}></div>
-            <image src = "1(1)"></image>
-      </div>
-      </div> 
-  )
+          </marquee></div><br></br>
+          <center><h1>##สินค้าแนะนำ##</h1></center>
+          
+          <center><table border="1" bordercolor="black" cellspacing="5" cellpadding="15">
+          <tr>
+            <td>  
+              <center>
+                <img src="https://1.bp.blogspot.com/-RRpCldhjjq8/Xap50QzDq8I/AAAAAAAAHpk/wwgoyVGRDWo5t1XRZYKpm0qqbwSA4DIQwCLcBGAsYHQ/s1600/1571453227801.jpg" width = '350' height = '300' />  
+              </center><br/><br/>
+            
+              <center>
+                <img src="https://cdn.thinglink.me/api/image/393896427756978177/1240/10/scaletowidth" width = '350' height = '300' />
+              </center><br/><br/>  
+              
+              <center>
+                <img src="https://napaporn502.files.wordpress.com/2014/12/1.jpg?w=503&h=345" width = '350' height = '300' />
+              </center><br/><br/>  
+          </td></tr></table>
+          </center>
+          </div>
+          </div>
+          </div>
+)
 }

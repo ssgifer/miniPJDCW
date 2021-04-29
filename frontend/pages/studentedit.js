@@ -1,20 +1,19 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import styles from "../styles/puppyedit.module.css";
+import styles from "../styles/student.module.css";
 import withAuth from "../components/withAuth";
 import Navbar from "../components/navbar";
-const URL = "http://localhost/api/puppys";
+const URL = "http://localhost/api/students";
 const admin = ({ token }) => {
   const [user, setUser] = useState({});
-  const [puppys, setPuppys] = useState({});
-  const [sex, setSex] = useState("");
-  const [age, setAge] = useState("");
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
-  const [puppy, setPuppy] = useState({});
-
+  const [students, setStudents] = useState({});
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [major, setMajor] = useState("");
+  const [GPA, setGPA] = useState(0);
+  const [student, setStudent] = useState({});
   useEffect(() => {
-    getPuppys();
+    getStudents();
     profileUser();
   }, []);
   const profileUser = async () => {
@@ -30,41 +29,47 @@ const admin = ({ token }) => {
     }
   };
 
-  const getpuppy = async (id) => {
+  const getstudent = async (id) => {
     const result = await axios.get(`${URL}/${id}`)
-    console.log('Puppy id: ', result.data)
-    setPuppy(result.data)
+    console.log('student id: ', result.data)
+    setStudent(result.data)
 }
  
-  const getPuppys = async () => {
+  const getStudents = async () => {
     let result = await axios.get(URL);
-    setPuppys(result.data.list);
+    setStudents(result.data.list);
   };
 
-  const addPuppy = async () => {
+  const addStudent = async () => {
     let result = await axios.post(URL, {
-      species, sex, age, price, image
+      name,
+      surname,
+      major,
+      GPA,
     });
     console.log(result);
-    getPuppys();
+    getStudents();
   };
 
-  const deletePuppy = async (id) => {
+  const deleteStudent = async (id) => {
     let result = await axios.delete(`${URL}/${id}`);
-    getPuppys();
+    getStudents();
   };
 
-  const updatePuppy = async (id) => {
+  const updateStudent = async (id) => {
     let result = await axios.put(`${URL}/${id}`, {
-      species, sex, age, price, image
+      name,
+      surname,
+      major,
+      GPA,
     });
     console.log(result);
-    getPuppys();
+    getStudents();
   };
 
-  const showPuppys = () => {
-    if (puppys && puppys.length) {
-      return puppys.map((item, index) => {
+  const showStudents = () => {
+    if (students && students.length) {
+      return students.map((item, index) => {
         return (
           <div className={styles.listItem} key={index}>
             <b>Name:</b> {item.name} <br />
@@ -74,19 +79,19 @@ const admin = ({ token }) => {
             <div className={styles.edit_button}>
               <button
                 className={styles.button_get}
-                onClick={() => getPuppy(item.id)}
+                onClick={() => getstudent(item.id)}
               >
                 Get
               </button>
               <button
                 className={styles.button_update}
-                onClick={() => updatePuppy(item.id)}
+                onClick={() => updateStudent(item.id)}
               >
                 Update
               </button>
               <button
                 className={styles.button_delete}
-                onClick={() => deletePuppy(item.id)}
+                onClick={() => deleteStudent(item.id)}
               >
                 Delete
               </button>
@@ -101,47 +106,43 @@ const admin = ({ token }) => {
   return (
     <div className={styles.container}>
       <Navbar />
-      <h1><ins>Puppys Data Edit </ins></h1>
+      <h1><ins>Student Data Edit </ins></h1>
       <div className={styles.form_add}>
-        <h2>Add Puppys</h2>
-        Species :
+        <h2>Add Students</h2>
+        Name:
         <input
           type="text"
-          name="species"
+          name="name"
           onChange={(e) => setName(e.target.value)}
         ></input>
-        Sex :
+        Surname:
         <input
           type="text"
-          name="sex"
-          onChange={(e) => setSex(e.target.value)}
+          name="surname"
+          onChange={(e) => setSurname(e.target.value)}
         ></input>
-        Age :
+        Major:
         <input
           type="text"
-          name="age"
-          onChange={(e) => setAge(e.target.value)}
+          name="major"
+          onChange={(e) => setMajor(e.target.value)}
         ></input>
-        Price:
+        GPA:
         <input
           type="number"
-          name="price"
-          onChange={(e) => setPrice(e.target.value)}
+          name="GPA"
+          onChange={(e) => setGPA(e.target.value)}
         ></input>
         <button
           className={styles.button_add}
-          onClick={() => addPuppy(species, sex, age, image)}
+          onClick={() => addStudent(name, surname, major, GPA)}
         >
           Add
         </button>
       </div>
 
-      <div className={styles.list}>{showPuppys()}</div>
-      <div className={styles.list1}><b><i><ins>(selected puppy)</ins></i></b> <b>  
-        Species : </b>{puppys.species}<b>  
-          Sex : </b>{puppys.sex}<b>  
-            Age : </b>{puppys.age}<b>
-              Prince : </b>{puppys.price}</div>
+      <div className={styles.list}>{showStudents()}</div>
+      <div className={styles.list1}><b><i><ins>(selected student)</ins></i></b> <b>  Name:</b>{student.name}<b>  Surname:</b>{student.surname} <b>  Major:</b>{student.major}  <b>GPA:</b>{student.GPA}</div>
     </div>
   );
 };

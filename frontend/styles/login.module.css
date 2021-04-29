@@ -1,113 +1,100 @@
 .content {
-  min-width: 25vw;
-}
-
-/*..gridContainer {
-  display: grid;
-  grid-template-columns: 100px auto;
-  margin-bottom: 16px;
-}
-
-gridContainer>div {
-  background-color:pink;
-  text-align: left;
-  padding: 10px 0;
-  font-size: 1.2rem;
-}*/
-
-.btncopy {
-  background-color: pink;
-  color: rgb(0, 0, 0);
-}
-.btnlogin {
-  background-color:pink;
-  color: rgb(0, 0, 0);
-}
-
-.text{
-  color: rgb(0, 0, 0);
-}
-.btn{
-  background-color: pink;
-  border-radius: 10%;
-  border: none;
-  color: rgb(0, 0, 0);
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.btn {
+    min-width: 25vw;
+  }
+  
+  .btncopy {
     background-color: pink;
     color: rgb(0, 0, 0);
-    font-size: 1rem;
-    margin-top: 10px;
-    border: 2px solid pink;
-}
-.btn:hover{
-    background-color: pink;
-    color: rgb(0, 0, 0);
-    font-size: 1rem;
-    margin-top: 10px;
-    border: 2px solid pink;
-}
-.btn1{
-  background-color: pink;
-  border-radius: 10%;
-  border: none;
-  color: rgb(0, 0, 0);
-  padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.btn1 {
-    background-color: pink;
-    color: rgb(0, 0, 0);
-    font-size: 1rem;
-    margin-top: 10px;
-    border: 2px solid pink;
-}
-.btn1:hover{
+  }
+  .btnlogin {
     background-color:pink;
     color: rgb(0, 0, 0);
-    font-size: 1rem;
-    margin-top: 10px;
-    border: 2px solid pink;
-}
-.btn2{
-  background-color: pink;
-  border-radius: 10%;
-  border: none;
-  color: rgb(0, 0, 0);
-  padding: 8px 8px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.btn2 {
-    background-color: pink;
+  }
+  
+  .text{
     color: rgb(0, 0, 0);
-    font-size: 1rem;
-    margin-top: 10px;
-    border: 2px solid pink;
-}
-.btn2:hover{
+  }
+  .btn{
     background-color: pink;
+    border-radius: 10%;
+    border: none;
     color: rgb(0, 0, 0);
-    font-size: 1rem;
-    margin-top: 10px;
-    border: 2px solid pink;
-}
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .btn {
+      background-color: pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }
+  .btn:hover{
+      background-color: pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }
+  .btn1{
+    background-color: pink;
+    border-radius: 10%;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .btn1 {
+      background-color: pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }
+  .btn1:hover{
+      background-color:pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }
+  .btn2{
+    background-color: pink;
+    border-radius: 10%;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .btn2 {
+      background-color: pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }
+  .btn2:hover{
+      background-color: pink;
+      color: rgb(0, 0, 0);
+      font-size: 1rem;
+      margin-top: 10px;
+      border: 2px solid pink;
+  }

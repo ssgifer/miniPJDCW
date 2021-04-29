@@ -54,10 +54,8 @@ export default function Login({ token }) {
           name="remember_me"
           type="checkbox"
           onClick={reMem}
-        />
-       
-      </div>
-      
+        /></div>
+      <div className={styles.text}><label><ins><b>Remember Me</b></ins></label></div>
     </div></center>
   );
 
@@ -79,8 +77,8 @@ export default function Login({ token }) {
           </center>
         </div>
         <br />
-        <center><div>Status: {status}</div></center>
-        <br />
+        <center><b><div>Status: {status}</div></b></center>
+        <br /><br />
         <center>{loginForm()}
         <div>
           <button className={styles.btn2} onClick={login}>Login</button>

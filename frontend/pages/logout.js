@@ -27,10 +27,10 @@ export default function Logout({ token }) {
             </Head>
             <div className={styles.container}>
                 <Navbar />
-                <h1>Logout</h1>
+                <center><h1>Logout</h1>
                 <div>
                     <h2> {status}  </h2>
-                </div>
+                </div></center>
             </div>
         </Layout>
     )

@@ -131,3 +131,11 @@
       margin-top: 10px;
       border: 2px solid pink;
   }
+
+  .btn{
+    background-color: pink;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    margin-top: 10px;
+    border: 2px solid pink;
+}

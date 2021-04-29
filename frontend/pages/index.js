@@ -52,8 +52,13 @@ export default function Home({ token }) {
               <center>
                 <img src="https://napaporn502.files.wordpress.com/2014/12/1.jpg?w=503&h=345" width = '350' height = '300' />
               </center><br/><br/>  
-          </td></tr></table>
-          </center>
+          </td></tr></table></center>
+          <div><br/><br/> 
+          <center>
+            <button type="button" onClick="/puppyshop">Go to Website</button></center>
+          <br/><br/> 
+          <br/><br/> 
+          </div>
           </div>
           </div>
           </div>

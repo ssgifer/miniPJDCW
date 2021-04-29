@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout'
@@ -15,6 +14,7 @@ export default function Register({ token }) {
     const [status, setStatus] = useState('')
 
     const profileUser = async () => {
+        console.log('token: ', token)
         const users = await axios.get(`${config.URL}/profile`, {
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -27,17 +27,19 @@ export default function Register({ token }) {
                 { username, email, password })
             console.log('result: ', result)
             console.log('result.data:  ', result.data)
+            console.log('token:  ', token)
             setStatus(result.data.message)
         }
         catch (e) {
             console.log(e)
         }
+
     }
 
     const registerForm = () => (
         <div className={styles.gridContainer}>
             <div>
-                Username :
+                <b>Username:</b>
             </div>
             <div>
                 <input type="text"
@@ -47,7 +49,7 @@ export default function Register({ token }) {
                 />
             </div>
             <div>
-                Email :
+                <b>Email:</b>
             </div>
             <div>
                 <input type="email"
@@ -56,7 +58,7 @@ export default function Register({ token }) {
                     onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div>
-                Password :
+                <b>Password:</b>
             </div>
             <div>
                 <input type="password"
@@ -64,16 +66,6 @@ export default function Register({ token }) {
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <div>
-                Confirm Password :
-            </div>
-            <div>
-                <input type="confirmpassword"
-                    name="confirmpassword"
-                    placeholder="confirmpassword"
-                    onChange={(e) => setPassword(e.target.value)} />
-            </div>
-
 
         </div>
     )
@@ -82,35 +74,32 @@ export default function Register({ token }) {
     return (
         <Layout>
             <Head>
-                <title>Register</title>
+                <title>Register Page</title>
             </Head>
             <div className={styles.container}>
                 <Navbar />
                 <h1>Register</h1>
                 <div><b>Token:</b> {token.substring(0, 15)}...
                 <button
+                className={styles.btn1}
                         onClick={() => { navigator.clipboard.writeText(token) }}>
                         Copy token
                 </button>
                 </div>
                 <br />
-            Status :  {status}
+            <b>Status: </b> <i>{status}</i>
                 <br /><br />
                 <div className={styles.content}>
                     {registerForm()}
                 </div>
 
                 <div>
-                    <button onClick={register}>Register</button>
+                    <button className={styles.btn}
+                    onClick={register}>Register</button>
                 </div>
             </div>
         </Layout>
     )
-}
-
-const logout = async () => {
-    let result = await axios.get(`${config.URL}/logout`, { withCredentials: true })
-    setStatus("Register successful")
 }
 
 export function getServerSideProps({ req, res }) {

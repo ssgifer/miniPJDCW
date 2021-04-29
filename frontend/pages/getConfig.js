@@ -11,8 +11,11 @@ const GetConfig = () => {
         </Head>
         <div className={styles.container}>
             <Navbar />
+            <h2> Get Configuration from ../config/config.js </h2>
             <b>Config: </b> {JSON.stringify(config)}
             <ul>
+                <li>npm run dev  (for development mode)</li>
+                <li>npm run build; npm run start  (for production mode)</li>
             </ul>
         </div>
 

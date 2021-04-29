@@ -38,24 +38,31 @@ export default function Register({ token }) {
 
     const registerForm = () => (
         <center><div className={styles.gridContainer}>
-          <div><b>Username:</b></div><br></br>
-          <div>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div><br></br>
-          <div><b>Password:</b></div><br></br>
-          <div>
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div><br></br>
+            <div>
+                <b>Username:</b></div><br></br>
+            <div>
+                <input type="text"
+                    name="username"
+                    placeholder="username"
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+            </div><br></br>
+            <div>
+                <b>Email:</b></div><br></br>
+            <div>
+                <input type="email"
+                    name="email"
+                    placeholder="email"
+                    onChange={(e) => setEmail(e.target.value)} />
+            </div><br></br>
+            <div>
+                <b>Password:</b></div><br></br>
+            <div>
+                <input type="password"
+                    name="password"
+                    placeholder="password"
+                    onChange={(e) => setPassword(e.target.value)} />
+            </div>
         </div></center>
     )
 
@@ -63,31 +70,25 @@ export default function Register({ token }) {
     return (
         <Layout>
             <Head>
-                <title>Register Page</title>
+                <title>Register</title>
             </Head>
             <div className={styles.container}>
                 <Navbar />
-                <center><h1>Register</h1>
-                <div><b>Token:</b> {token.substring(0, 15)}...
+                <center><h1>Register</h1></center>
                 
-                <button
-                className={styles.btn1}
-                        onClick={() => { navigator.clipboard.writeText(token) }}>
-                        Copy token
-                </button>
-                </div></center>
+                </div>
                 <br />
-                <center><b>Status: </b> <i>{status}</i></center>
+                <center>
+                <b>Status: </b> <i>{status}</i>
+                </center>
                 <br /><br />
                 <div className={styles.content}>
                     {registerForm()}
-                </div>
-
+                </div><br/>
                 <div>
                     <center><button className={styles.btn}
                     onClick={register}>Register</button>
-                </center></div>
-            </div>
+                    </center></div>
         </Layout>
     )
 }

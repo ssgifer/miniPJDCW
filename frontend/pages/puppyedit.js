@@ -10,7 +10,7 @@ const admin = ({ token }) => {
   const [sex, setSex] = useState("");
   const [age, setAge] = useState("");
   const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
+  const [imageurl, setImageUrl] = useState("");
   const [puppy, setPuppy] = useState({});
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const admin = ({ token }) => {
     }
   };
 
-  const getpuppy = async (id) => {
+  const getPuppy = async (id) => {
     const result = await axios.get(`${URL}/${id}`)
     console.log('Puppy id: ', result.data)
     setPuppy(result.data)
@@ -43,7 +43,11 @@ const admin = ({ token }) => {
 
   const addPuppy = async () => {
     let result = await axios.post(URL, {
-      species, sex, age, price, image
+      species, 
+      sex, 
+      age, 
+      price, 
+      imageurl
     });
     console.log(result);
     getPuppys();
@@ -56,10 +60,14 @@ const admin = ({ token }) => {
 
   const updatePuppy = async (id) => {
     let result = await axios.put(`${URL}/${id}`, {
-      species, sex, age, price, image
+      species, 
+      sex, 
+      age, 
+      price, 
+      imageurl
     });
+
     console.log(result);
-    getPuppys();
   };
 
   const showPuppys = () => {
@@ -67,10 +75,13 @@ const admin = ({ token }) => {
       return puppys.map((item, index) => {
         return (
           <div className={styles.listItem} key={index}>
-            <b>Name:</b> {item.name} <br />
-            <b>Surname:</b> {item.surname} <br />
-            <b>Major:</b> {item.major} <br />
-            <b>GPA:</b> {item.GPA}
+            <b>Image</b>
+            <div className={styles.img} key={index}><img src={item.imgeurl} width={200} hight={200} /><br /></div>
+            <b>สายพนธุ์ (Species) : {item.species}<br /></b>
+            <b>เพศ (Sex) : {item.sex}<br /></b>
+            <b>อายุ (Age) : {item.age}<br /></b> 
+            <b>ราคา (Price) : {item.price}<br /></b>
+
             <div className={styles.edit_button}>
               <button
                 className={styles.button_get}
@@ -94,7 +105,8 @@ const admin = ({ token }) => {
           </div>
         );
       });
-    } else {
+    } 
+    else {
       return <p>Loading...</p>;
     }
   };

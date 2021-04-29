@@ -23,7 +23,7 @@ export default function Logout({ token }) {
     return (
         <Layout>
             <Head>
-                <title>Logout Page</title>
+                <title>Logout</title>
             </Head>
             <div className={styles.container}>
                 <Navbar />

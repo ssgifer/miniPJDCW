@@ -27,10 +27,10 @@ export default function Login({ token }) {
   const reMem = async () => {
     setRemember(!remember);
   };
-
+  
   const loginForm = () => (
-    <div className={styles.gridContainer}>
-      <div><b>Username:</b></div>
+    <center><div className={styles.gridContainer}>
+      <div><b>Username:</b></div><br></br>
       <div>
         <input
           type="text"
@@ -38,8 +38,8 @@ export default function Login({ token }) {
           placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
         />
-      </div>
-      <div><b>Password:</b></div>
+      </div><br></br>
+      <div><b>Password:</b></div><br></br>
       <div>
         <input
           type="password"
@@ -47,7 +47,7 @@ export default function Login({ token }) {
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-      </div>
+      </div><br></br>
       <div className="flex items-center">
         <input
           id="remember_me"
@@ -56,9 +56,9 @@ export default function Login({ token }) {
           onClick={reMem}
         />
        
-      </div> 
-      <div className={styles.text}><label><ins><b>Remember Me</b></ins></label></div>
-    </div>
+      </div>
+      
+    </div></center>
   );
 
   const copyText = () => {
@@ -72,18 +72,19 @@ export default function Login({ token }) {
       </Head>
       <div className={styles.container}>
         <Navbar />
-        <h1>Login</h1>
+        <center><h1>Login</h1></center>
         <div>
-          <b>Token:</b> {token.substring(0, 15)}...
+          <center><b>Token:</b> {token.substring(0, 15)}...
           <button className={styles.btn1} onClick={copyText}> Copy token </button>
+          </center>
         </div>
         <br />
-        <div>Status: {status}</div>
+        <center><div>Status: {status}</div></center>
         <br />
-        {loginForm()}
+        <center>{loginForm()}
         <div>
           <button className={styles.btn2} onClick={login}>Login</button>
-        </div>
+        </div></center>
       </div>
     </Layout>
   );

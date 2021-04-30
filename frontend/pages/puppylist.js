@@ -1,20 +1,20 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import styles from "../styles/puppyedit.module.css";
+import styles from "../styles/Home.module.css";
 import withAuth from "../components/withAuth";
 import Navbar from "../components/navbar";
-const URL = "http://localhost/api/puppys";
+const URL = "http://localhost/api/puppylist";
 const admin = ({ token }) => {
   const [user, setUser] = useState({});
-  const [puppys, setPuppys] = useState({});
+  const [puppylists, setPuppylists] = useState({});
   const [sex, setSex] = useState("");
   const [age, setAge] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [imageurl, setImageUrl] = useState("");
-  const [puppy, setPuppy] = useState({});
+  const [puppylist, setPuppylist] = useState({});
 
   useEffect(() => {
-    getPuppys();
+    getPuppylists();
     profileUser();
   }, []);
   const profileUser = async () => {
@@ -30,18 +30,18 @@ const admin = ({ token }) => {
     }
   };
 
-  const getPuppy = async (id) => {
+  const getPuppylist = async (id) => {
     const result = await axios.get(`${URL}/${id}`)
     console.log('Puppy id: ', result.data)
-    setPuppy(result.data)
+    setPuppylist(result.data)
 }
  
-  const getPuppys = async () => {
+  const getPuppylists = async () => {
     let result = await axios.get(URL);
-    setPuppys(result.data.list);
+    setPuppylists(result.data.list);
   };
 
-  const addPuppy = async () => {
+  const addPuppylist = async () => {
     let result = await axios.post(URL, {
       species, 
       sex, 
@@ -50,15 +50,15 @@ const admin = ({ token }) => {
       imageurl
     });
     console.log(result);
-    getPuppys();
+    getPuppylists();
   };
 
-  const deletePuppy = async (id) => {
+  const deletePuppylist = async (id) => {
     let result = await axios.delete(`${URL}/${id}`);
-    getPuppys();
+    getPuppylists();
   };
 
-  const updatePuppy = async (id) => {
+  const updatePuppylist = async (id) => {
     let result = await axios.put(`${URL}/${id}`, {
       species, 
       sex, 
@@ -66,38 +66,38 @@ const admin = ({ token }) => {
       price, 
       imageurl
     });
-
     console.log(result);
   };
 
-  const showPuppys = () => {
-    if (puppys && puppys.length) {
-      return puppys.map((item, index) => {
+  const showPuppylist = () => {
+    if (puppylists && puppylists.length) {
+      return puppylists.map((item, index) => {
         return (
           <div className={styles.listItem} key={index}>
             <b>Image</b>
-            <div className={styles.img} key={index}><img src={item.imgeurl} width={200} hight={200} /><br /></div>
-            <b>สายพนธุ์ (Species) : {item.species}<br /></b>
+            <div className={styles.img} key={index}><img src={item.imageurl} width={200} hight={200} /><br /></div>
+            <b>สายพันธุ์ (Species) : {item.species}<br /></b>
             <b>เพศ (Sex) : {item.sex}<br /></b>
             <b>อายุ (Age) : {item.age}<br /></b> 
             <b>ราคา (Price) : {item.price}<br /></b>
+            <b>รูป (Image) : {item.image}<br /></b>
 
             <div className={styles.edit_button}>
               <button
                 className={styles.button_get}
-                onClick={() => getPuppy(item.id)}
+                onClick={() => getPuppylist(item.id)}
               >
                 Get
               </button>
               <button
                 className={styles.button_update}
-                onClick={() => updatePuppy(item.id)}
+                onClick={() => updatePuppylist(item.id)}
               >
                 Update
               </button>
               <button
                 className={styles.button_delete}
-                onClick={() => deletePuppy(item.id)}
+                onClick={() => deletePuppylist(item.id)}
               >
                 Delete
               </button>
@@ -113,47 +113,55 @@ const admin = ({ token }) => {
   return (
     <div className={styles.container}>
       <Navbar />
-      <h1><ins>Puppys Data Edit </ins></h1>
+      <center><h1><ins>Puppys Data Edit </ins></h1>
       <div className={styles.form_add}>
         <h2>Add Puppys</h2>
-        Species :
-        <input
+        <br></br>สายพันธุ์ (Species) : 
+        <input 
           type="text"
           name="species"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setSpecies(e.target.value)}
         ></input>
-        Sex :
+        <br></br>เพศ (Sex) :
         <input
           type="text"
           name="sex"
           onChange={(e) => setSex(e.target.value)}
         ></input>
-        Age :
+        <br></br>อายุ (Age) : 
         <input
           type="text"
           name="age"
           onChange={(e) => setAge(e.target.value)}
         ></input>
-        Price:
+        <br></br>ราคา (Price) : 
         <input
           type="number"
           name="price"
           onChange={(e) => setPrice(e.target.value)}
         ></input>
+        <br></br>รูป (image) : 
+        <input
+          type="image"
+          name= "url"
+          onChange={(e) => setImage(e.target.value)}
+          ></input>
+          
         <button
           className={styles.button_add}
-          onClick={() => addPuppy(species, sex, age, image)}
+          onClick={() => addPuppylist(species, sex, age, price, image)}
         >
           Add
         </button>
-      </div>
+      </div></center>
 
-      <div className={styles.list}>{showPuppys()}</div>
+      <div className={styles.list}>{showPuppylist()}</div>
       <div className={styles.list1}><b><i><ins>(selected puppy)</ins></i></b> <b>  
-        Species : </b>{puppys.species}<b>  
-          Sex : </b>{puppys.sex}<b>  
-            Age : </b>{puppys.age}<b>
-              Prince : </b>{puppys.price}</div>
+      สายพันธุ์ (Species) : </b>{puppylists.species}<b>  
+      เพศ (Sex) : </b>{puppylists.sex}<b>
+      อายุ (Age) : </b>{puppylists.age}<b>
+      ราคา (Price) : </b>{puppylists.price}<b>
+      รูป (image) : </b>{puppylists.imageurl}</div>
     </div>
   );
 };

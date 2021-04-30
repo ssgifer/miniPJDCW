@@ -69,12 +69,6 @@ return res.json({ message: 'Logout successful' })
 //     res.send('Foo');
 // })
 
-router.get('/foo',
-passport.authenticate('jwt', { session: false }),
-(req, res, next) => {
-    res.send('Foo')
-});
-
 /* GET user profile. */
 router.get('/profile',
 passport.authenticate('jwt', { session: false }),
@@ -113,53 +107,53 @@ let herolists = {
 
 
   router
-  .route("/puppys")
+  .route("/puppylists")
   .get((req, res) => {
     res.send(pupps);
   })
   .post((req, res) => {
     console.log(req.body);
     let newstudent = {};
-    newpuppy.id = puppys.list.length ? pupps.list[pupps.list.length - 1].id + 1 : 1;
-    newpuppy.species = req.body.species;
-    newpuppy.sex = req.body.sex;
-    newpuppy.age = req.body.age;
-    newpuppy.price = req.body.price;
-    newpuppy.imageurl = req.body.imageurl;
-    puppys = { list: [...puppys.list, newpuppy] };
+    newpuppylist.id = puppylists.list.length ? puppylists.list[puppylists.list.length - 1].id + 1 : 1;
+    newpuppylist.species = req.body.species;
+    newpuppylist.sex = req.body.sex;
+    newpuppylist.age = req.body.age;
+    newpuppylist.price = req.body.price;
+    newpuppylist.imageurl = req.body.imageurl;
+    puppylists = { list: [...puppylists.list, newpuppylist] };
     res.json(puppys);
   });
 
   router
-  .route("/puppys/:puppyid")
+  .route("/puppylists/:puppylist")
   .get((req, res) => {
-    let id = puppys.list.findIndex((item) => +item.id == +req.params.puppyid)
-    res.json(puppys.list[id]);
+    let id = puppylist.list.findIndex((item) => +item.id == +req.params.puppylist)
+    res.json(puppylists.list[id]);
   })
   .put((req, res) => {
-    let id = puppys.list.findIndex((item) => item.id == +req.params.puppyid);
-    puppys.list[id].species = req.body.species;
-    puppys.list[id].sex = req.body.sex;
-    puppys.list[id].age = req.body.age;
-    puppys.list[id].price = req.body.price;
-    puppys.list[id].image = req.body.image;
-    res.json(puppys.list);
+    let id = puppylists.list.findIndex((item) => item.id == +req.params.puppylist);
+    puppylists.list[id].species = req.body.species;
+    puppylists.list[id].sex = req.body.sex;
+    puppylists.list[id].age = req.body.age;
+    puppylists.list[id].price = req.body.price;
+    puppylists.list[id].imageurl = req.body.imageurl;
+    res.json(puppylists.list);
   })
   .delete((req, res) => {
-    puppys.list = puppys.list.filter((item) => +item.id !== +req.params.puppyid);
-    res.json(puppys.list);
+    puppylistslist = puppylists.list.filter((item) => +item.id !== +req.params.puppylist);
+    res.json(puppylists.list);
   });
 
 
-router.route("/purchase/:puppyId")
+router.route("/purchase/:puppylist")
 .post((req,res) => {
-  let id = puppys.list.findIndex((item) => +item.id == +req.params.studentId)
+  let id = puppylists.list.findIndex((item) => +item.id == +req.params.puppylist)
   if (id == -1) {
     res.json({message: "Student not found"})
   }
   else {
-    puppys.list = puppys.list.filter((item) => +item.id !== +req.params.puppyId);
-    res.json(puppys.list);
+    puppylists.list = puppylists.list.filter((item) => +item.id !== +req.params.puppylist);
+    res.json(puppylists.list);
   }
 })
 

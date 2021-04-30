@@ -33,10 +33,10 @@ export default function Home({ token }) {
       <div className={styles.title}>
       <marquee bgcolor="#FFCCCC" direction="left" scrollamount="15" width="100%" height="200px">
           <h1><ins>**Promotion**</ins></h1>
-          <h3>ซื้อสุนัขวันนี้ แถมฟรีเซตแฟนวีสุดน่ารัก ทั้งเสื้อผ้า เบาะนอน และของเล่นมากมาย</h3>
+          <h3>ซื้อสุนัขวันนี้ แถมฟรีเซ็ตแฟนซีสุดน่ารัก ทั้งเสื้อผ้า เบาะนอน และของเล่นมากมาย</h3>
           <h2>เฉพาะ 3 วันนี้เท่านั้น!!!</h2>
           </marquee></div><br></br>
-          <center><h1>##สินค้าแนะนำ##</h1></center>
+          <center><h1>## ลูกสุนัขมาใหม่ ##</h1></center>
           
           <center><table border="1" bordercolor="black" cellspacing="5" cellpadding="15">
           <tr>
@@ -53,14 +53,10 @@ export default function Home({ token }) {
                 <img src="https://napaporn502.files.wordpress.com/2014/12/1.jpg?w=503&h=345" width = '350' height = '300' />
               </center><br/><br/>  
           </td></tr></table></center>
-          <div><br/><br/> 
-          <center>
-            <button type="button" onClick="/puppyshop">Go to Website</button></center>
-          <br/><br/> 
-          <br/><br/> 
+          <div><br/><br/>
           </div>
-          </div>
-          </div>
-          </div>
+        </div>
+      </div>
+    </div>
 )
 }

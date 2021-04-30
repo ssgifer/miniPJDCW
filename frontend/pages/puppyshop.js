@@ -1,54 +1,63 @@
 import Head from 'next/head' 
-import Navbar from '../components/navbar'
-import styles from '../styles/Home.module.css' 
-import React from 'react';
-import html from 'react'
+import Layout from '../components/layout' 
+import useSWR, { mutate } from "swr";
+import axios from "axios";
+import React, { } from "react";
+import styles from "../styles/Index.module.css";
+import Navbar from "../components/navbar";
+const URL = "http://localhost/api/puppylists";
+const URL_SEL = "http://localhost/api/purchase";
+const fetcher = (key) => fetch(key).then((res) => res.json());
+const puppyshop = () => {
+  const { data, error } = useSWR(URL, fetcher, { revalidateOnFocus: false });
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+  console.log("data", data);
+  
+  const selStu = async (id) => {
+    let result = await axios.post(`${URL_SEL}/${id}`)
+    mutate(URL, data);
+  }
 
-export function getServerSideProps({ req, res }) {
-  return { props: { token: req.cookies.token || "" } };
-}
-
-export default function Home({ token }) {
-    
-  return (
-   <div>
-    <Head>
-        <title>Home</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
-    </Head>
-    <Navbar />
-      <div className={styles.container1}>
-      <div className={styles.title}>
-      <marquee bgcolor="#FFCCCC" direction="left" scrollamount="15" width="100%" height="200px">
-          <h1><ins>**Promotion**</ins></h1>
-          <h3>ซื้อสุนัขวันนี้ แถมฟรีเซ็ตแฟนซีสุดน่ารัก ทั้งเสื้อผ้า เบาะนอน และของเล่นมากมาย</h3>
-          <h2>เฉพาะ 3 วันนี้เท่านั้น!!!</h2>
-          </marquee></div><br></br>
-          <center><h1>## ลูกสุนัขมาใหม่ ##</h1></center>
-          
-          <center><table border="1" bordercolor="black" cellspacing="5" cellpadding="15"/>
-          <table> 
-              <center>
-                < img src="https://1.bp.blogspot.com/-RRpCldhjjq8/Xap50QzDq8I/AAAAAAAAHpk/wwgoyVGRDWo5t1XRZYKpm0qqbwSA4DIQwCLcBGAsYHQ/s1600/1571453227801.jpg" width = '350' height = '300' />
-                <h3>ราคา 7900฿</h3>
-                <button type="button" onclick="alert('Successful Purchase!')">เลือก</button>
-                </center><br/><br/>  
-                <center>
-                < img src="https://cdn.thinglink.me/api/image/393896427756978177/1240/10/scaletowidth" width = '350' height = '300' />
-                <h3>ราคา 7900฿</h3>
-                <button type="button" onclick="alert('Successful Purchase!')">เลือก</button>
-                </center><br/><br/>  
-                <center>
-                < img src="https://napaporn502.files.wordpress.com/2014/12/1.jpg?w=503&h=345" width = '350' height = '300' />
-                <h3>ราคา 7900฿</h3>
-                <button type="button" onclick="alert('Successful Purchase!')">เลือก</button>
-                </center><br/><br/>  
-          </table></center>
-          </div><br/><br/>
+  const showPuppylist = () => {
+    if (data.list && data.list.length) {
+      return data.list.map((item, index) => {
+        return (
+          <div className={styles.listItem} key={index}>
+            <b>Image</b><img src={item.imgeurl} width={200} hight={200} /><br />
+            <div><b>Species : </b> {item.species}</div>
+            <div><b>Sex : </b> {item.sex}</div>
+            <div> <b>Age : </b> {item.age} </div>
+            <div><b>Price : </b> {item.price}</div>
+            
+            <div>
+            <button
+              className={styles.btn}
+              onClick={() => selStu(item.id)}
+            >
+              Select
+            </button></div>
           </div>
-)
-}
+        );
+      });
+    } else {
+      return <p>Loading...</p>;
+    }
+  };
+  return (
+    <Layout>
+       <Head>
+        <title>Puppy Shop</title>
+    </Head>
+    <div className={styles.container}><Navbar />
+      <div className={styles.title}>
+      </div>
+      <div className={styles.list}>
+        {showPuppylist()}
+      </div>
+      
+    </div>
+    </Layout>
+  );
+};
+export default puppyshop;

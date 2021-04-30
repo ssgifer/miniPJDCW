@@ -100,7 +100,7 @@ router.get('/alluser', (req,res) => res.json(db.users.users))
 router.get('/', (req, res, next) => {
 res.send('Respond without authentication');
 });
-let herolists = {
+let puppylists = {
     list: [
 ]
   }
@@ -109,7 +109,7 @@ let herolists = {
   router
   .route("/puppylists")
   .get((req, res) => {
-    res.send(pupps);
+    res.send(puppylists);
   })
   .post((req, res) => {
     console.log(req.body);
@@ -149,7 +149,7 @@ router.route("/purchase/:puppylist")
 .post((req,res) => {
   let id = puppylists.list.findIndex((item) => +item.id == +req.params.puppylist)
   if (id == -1) {
-    res.json({message: "Student not found"})
+    res.json({message: "Puppy not found"})
   }
   else {
     puppylists.list = puppylists.list.filter((item) => +item.id !== +req.params.puppylist);

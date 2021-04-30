@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/puppy.module.css";
 import withAuth from "../components/withAuth";
 import Navbar from "../components/navbar";
 const URL = "http://localhost/api/puppylist";
@@ -10,8 +10,9 @@ const admin = ({ token }) => {
   const [sex, setSex] = useState("");
   const [age, setAge] = useState("");
   const [price, setPrice] = useState("");
-  const [imageurl, setImageUrl] = useState("");
   const [puppylist, setPuppylist] = useState({});
+  const [imageurl, setImageUrl] = useState("");
+  
 
   useEffect(() => {
     getPuppylists();
@@ -80,7 +81,7 @@ const admin = ({ token }) => {
             <b>เพศ (Sex) : {item.sex}<br /></b>
             <b>อายุ (Age) : {item.age}<br /></b> 
             <b>ราคา (Price) : {item.price}<br /></b>
-            <b>รูป (Image) : {item.image}<br /></b>
+            <b>รูป (Image) : {item.imageurl}<br /></b>
 
             <div className={styles.edit_button}>
               <button
@@ -143,13 +144,13 @@ const admin = ({ token }) => {
         <br></br>รูป (image) : 
         <input
           type="image"
-          name= "url"
-          onChange={(e) => setImage(e.target.value)}
+          name= "imageurl"
+          onChange={(e) => setImageUrl(e.target.value)}
           ></input>
           
         <button
           className={styles.button_add}
-          onClick={() => addPuppylist(species, sex, age, price, image)}
+          onClick={() => addPuppylist(species, sex, age, price, imageurl)}
         >
           Add
         </button>

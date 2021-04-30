@@ -102,8 +102,8 @@ res.send('Respond without authentication');
 });
 let puppylists = {
     list: [
-]
-  }
+]}
+  
 
 
   router
